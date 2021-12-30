@@ -4,10 +4,10 @@ class BaseDescriptor:
         self.uri = 'vdm://{_address}/{_pid}/{_id}'
         pass
 
-    def start(self, stat=None):
+    def resume(self, stat=None):
         pass
 
-    def stop(self):
+    def retain(self):
         pass
 
     pass
