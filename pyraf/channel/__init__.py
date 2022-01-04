@@ -46,9 +46,9 @@ class ChannelContext(MutableMapping):
 class ChannelDescriptor:
     __type__ = ['shared', 'forward', 'broadcast']
 
-    def __init__(self, sender, receiver, type='forward', _filter=None):
+    def __init__(self, tx, rx, type='forward', _filter=None):
         self._filter = _filter
-        (sender.uri, receiver.uri)
+        (tx.uri, rx.uri)
         pass
 
     @property
