@@ -11,3 +11,7 @@
     - **SocketDescriptor**: maintain all network connections over a virtual network interface;
 - `remote`: IP-based remote devices management
     - discovery, offloading, daemon, and etc.
+
+### Notes
+1. PyRAF is not a P2P framework, the APP is hosted by the device with the `yggdrasil`;
+2. 

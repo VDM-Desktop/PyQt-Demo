@@ -3,16 +3,30 @@ __all__ = ['channel', 'descriptor']
 from .descriptor import BaseDescriptor
 
 class Yggdrasil:
+    __slots__ = ['things']
+
+    def __init__(self, things=None) -> None:
+        self.things = things if things else dict()
+        pass
+
+    def prune(self, name):
+        pass
+
+    def merge(self, ):
+        pass
+
     pass
 
 class __PyRAF:
     def __init__(self) -> None:
-        #TODO: [Channel] init global channel in current process
+        #NOTE: [Channel] init global channel in current process
+        
         #TODO: [Socket] init virtual network interface
         #TODO: [File] init pseudo file system
         #TODO: [Device] init device mapper
         #TODO: [remote] init discovery service
-        #TODO: init Yggdrasil
+        #NOTE: init Yggdrasil
+        self.root = Yggdrasil()
         pass
 
     def descriptor(self, desc: BaseDescriptor,

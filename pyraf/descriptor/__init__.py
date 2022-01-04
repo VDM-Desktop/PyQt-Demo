@@ -1,7 +1,10 @@
 
 class BaseDescriptor:
     def __init__(self) -> None:
-        self.uri = 'vdm://{_address}/{_pid}/{_id}'
+        self.uri = 'raf://{_address}/{_pid}/{_id}'
+        pass
+
+    def triggerHandle(self, *args, **kwargs):
         pass
 
     def resume(self, stat=None):
