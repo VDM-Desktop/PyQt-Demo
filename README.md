@@ -13,5 +13,5 @@
     - discovery, offloading, daemon, and etc.
 
 ### Notes
-1. PyRAF is not a P2P framework, the APP is hosted by the device with the `yggdrasil`;
-2. 
+1. PyRAF is not a P2P framework, the APP is hosted by the device with the `Yggdrasil`;
+2. `Yggdrasil` is composed of `ChannelDescriptor`s (as truss) and other `BaseDescriptor`s (assembled on truss);

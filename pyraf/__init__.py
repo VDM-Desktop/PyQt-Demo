@@ -21,8 +21,7 @@ class Yggdrasil:
 
 class __PyRAF:
     def __init__(self) -> None:
-        #NOTE: [Channel] init global channel in current process
-        
+        #TODO: [Channel] init global channel in current process
         #TODO: [Socket] init virtual network interface
         #TODO: [File] init pseudo file system
         #TODO: [Device] init device mapper
@@ -57,6 +56,10 @@ class __PyRAF:
             self.stop()
             return res
         return _wrap_func
+
+    def IoslatedExecutor(self, desc):
+        #TODO: prepare control/data link for the desc
+        pass
 
     ##-------------- offline operation -------------##
     def add(self, desc: BaseDescriptor) -> str:
