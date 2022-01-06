@@ -15,3 +15,4 @@
 ### Notes
 1. PyRAF is not a P2P framework, the APP is hosted by the device with the `Yggdrasil`;
 2. `Yggdrasil` is composed of `ChannelDescriptor`s (as truss) and other `BaseDescriptor`s (assembled on truss);
+3. PyRAF enables a high-level garbage collection. The retain/resume design will drain the memory leak of the descriptors;
