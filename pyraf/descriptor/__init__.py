@@ -20,10 +20,10 @@ class BaseDescriptor:
         ##
         if __name not in self.__group[__key]:
             self.__group[__key][__name] = __value
-            self.triggerHandle('add', __key, __name, __value)
+            if propagate: self.triggerHandle('add', __key, __name, __value)
         elif self.__group[__key][__name]!=__value:
             self.__group[__key][__name] = __value
-            self.triggerHandle('update', __key, __name, __value)
+            if propagate: self.triggerHandle('update', __key, __name, __value)
         else:
             pass
         pass
