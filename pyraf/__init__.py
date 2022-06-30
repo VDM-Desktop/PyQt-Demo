@@ -57,7 +57,7 @@ class __PyRAF:
             return res
         return _wrap_func
 
-    def IoslatedExecutor(self, desc):
+    def IsolatedExecutor(self, desc):
         #TODO: prepare control/data link for the desc
         pass
 
