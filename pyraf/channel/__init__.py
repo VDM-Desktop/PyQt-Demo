@@ -2,6 +2,12 @@ import re
 from collections.abc import MutableMapping
 from multiprocessing import Queue
 
+from ..descriptor import BaseDescriptor
+
+CHANNEL_FORWARD   = 0x01
+CHANNEL_SHARED    = 0x02
+CHANNEL_BROADCAST = 0x03
+
 class ChannelContext(MutableMapping):
     def __init__(self, parent, channels:list, _input=None, _output=None) -> None:
         self.parent, self.channels = parent, channels
@@ -43,11 +49,9 @@ class ChannelContext(MutableMapping):
 
     pass
 
-class ChannelDescriptor:
-    __type__ = ['shared', 'forward', 'broadcast']
-
-    def __init__(self, tx, rx, type='forward', _filter=None):
-        self._filter = _filter
+class ChannelDescriptor(BaseDescriptor):
+    def __init__(self, tx, rx, groups:tuple, type=CHANNEL_FORWARD):
+        self.groups = groups
         (tx.uri, rx.uri)
         pass
 

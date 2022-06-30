@@ -6,6 +6,6 @@ setup(
     packages = ['pyraf'],
 
     install_requires = [
-        'PyQt5'
+        'PyQt5', 'netifaces'
     ]
 )

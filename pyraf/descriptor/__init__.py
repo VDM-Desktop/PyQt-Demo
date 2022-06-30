@@ -1,9 +1,15 @@
 
 class BaseDescriptor:
     def __init__(self) -> None:
-        self.__uri = 'raf://{_address}/{_pid}/{_id}'
+        from ..utils.RafUri import RafUri
+        ##
+        self.__uri = RafUri()
         self.__group = dict()
         pass
+
+    @property
+    def uri(self):
+        return self.__uri
 
     def __setattr__(self, __name: str, __value, propagate=True) -> None:
         super().__setattr__(__name, __value)

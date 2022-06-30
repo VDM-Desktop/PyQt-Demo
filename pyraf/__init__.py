@@ -1,8 +1,7 @@
 __all__ = ['channel', 'descriptor']
 
-import sys
-from functools import wraps
 from .descriptor import BaseDescriptor
+from .channel import (CHANNEL_FORWARD, CHANNEL_SHARED, CHANNEL_BROADCAST)
 
 class Yggdrasil:
     __slots__ = ['things']
@@ -41,7 +40,7 @@ class __PyRAF:
             pass
 
         def __rshift__(_self, _desc):
-            self.connect(_self, _desc, type='forward')
+            self.connect(_self, _desc, type=CHANNEL_FORWARD)
             pass
 
         desc.__init__ = __init__
@@ -49,6 +48,7 @@ class __PyRAF:
         return desc
     
     def Daemon(self, func):
+        from functools import wraps
         @wraps(func)
         def _wrap_func(*args, **kwargs):
             self.start()
@@ -105,3 +105,8 @@ class __PyRAF:
     pass
 
 PyRAF = __PyRAF()
+
+
+
+if __name__=='__main__':
+    pass
