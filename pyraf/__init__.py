@@ -34,9 +34,7 @@ class __PyRAF:
 
         def __init__(_self, *args, **kwargs):
             origin_init(_self, *args, **kwargs)
-            _self._isolated = isolated
-            _self._remote   = remote
-            self.add(_self)
+            self.add(_self, isolated, remote)
             pass
 
         def __rshift__(_self, _desc):
@@ -62,7 +60,7 @@ class __PyRAF:
         pass
 
     ##-------------- offline operation -------------##
-    def add(self, desc: BaseDescriptor) -> str:
+    def add(self, desc: BaseDescriptor, isolated:bool, remote:bool) -> str:
         assert( isinstance(desc, BaseDescriptor) )
         #add to Yggdrasil
         pass

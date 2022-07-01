@@ -1,8 +1,9 @@
-import re
+import socket
 from collections.abc import MutableMapping
 from multiprocessing import Queue
 
 from ..descriptor import BaseDescriptor
+from ..remote import DAEMON_PORT
 
 CHANNEL_FORWARD   = 0x01
 CHANNEL_SHARED    = 0x02
@@ -49,24 +50,43 @@ class ChannelContext(MutableMapping):
 
     pass
 
-class ChannelDescriptor(BaseDescriptor):
-    def __init__(self, tx, rx, groups:tuple, type=CHANNEL_FORWARD):
+class ChannelFactory:
+    def __init__(self) -> None:
+        pass
+    pass
+
+class ChannelDescriptor:
+    def __init__(self, tx, *rx, groups:tuple, type=CHANNEL_FORWARD):
         self.groups = groups
-        (tx.uri, rx.uri)
+        if type!=CHANNEL_BROADCAST:
+            assert( len(rx)==1 )
+        ##
+        rx_one = rx[0]
+        _remote, _isolated = tx % rx_one
+        if _remote:
+            tx_chan, rx_chan = self.__remote(tx, rx_one)
+        elif _isolated:
+            tx_chan, rx_chan = self.__isolated(tx, rx_one)
+        else:
+            tx_chan, rx_chan = self.__local(tx, rx_one)
+        ##
+        {
+            CHANNEL_FORWARD: self.__forward,
+            CHANNEL_SHARED:  self.__shared,
+            CHANNEL_BROADCAST: self.__broadcast
+        }[type](tx, rx, tx_chan, rx_chan)
         pass
 
-    @property
-    def receivers(self):
-        return self._receivers
+    def __local(self, tx, rx):
+        _dict = dict()
+        return (_dict, _dict)
 
-    @property
-    def filter(self):
-        try:
-            _regex = re.compile(self._filter)
-            _filter = lambda x: {k:v for k,v in x.items() if _regex.fullmatch(k) is not None}
-            return _filter
-        except:
-            return (lambda x: x)
+    def __isolated(self, tx, rx):
+        _q = Queue()
+        return (_q, _q)
+
+    def __remote(self, tx, rx):
+        return (rx.address, tx.address)
 
     def send(self):
         pass

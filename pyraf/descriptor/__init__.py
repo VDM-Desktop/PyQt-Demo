@@ -39,10 +39,11 @@ class BaseDescriptor:
         self.triggerHandle('del', __key, __name)
         pass
 
-    def setGroup(self, group_name) -> None:
+    def setGroup(self, group_name, shared_dict=None) -> None:
         __key = f'{group_name}'
         if __key not in self.__group:
-            self.__group[ __key ] = dict()
+            _dict = shared_dict if shared_dict else dict()
+            self.__group[ __key ] = _dict
         pass
 
     def getGroup(self, group_name) -> list:
